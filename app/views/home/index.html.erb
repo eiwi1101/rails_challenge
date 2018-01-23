@@ -4,26 +4,44 @@
   <form>
     <div class="alerts"></div>
 
-    <div class="ds-u-clearfix">
-      <label class="ds-c-label" for="household">
-        Household size
-      </label>
+    <div class="main-input">
+      <div class="ds-u-clearfix">
+        <label class="ds-c-label" for="household">
+          Household size
+        </label>
 
-      <input name="household" class="ds-c-field block" />
+        <input id="household"
+               name="household"
+               class="ds-c-field block"
+               autofocus />
+      </div>
+
+      <div class="ds-u-clearfix">
+        <label class="ds-c-label" for="income">
+          Income
+        </label>
+
+        <input id="income"
+               name="income"
+               class="ds-c-field block" />
+      </div>
+
+      <hr />
+
+      <div class="ds-u-clearfix">
+        <button id="button" type="submit" class="ds-c-button block">Submit</button>
+      </div>
     </div>
 
-    <div class="ds-u-clearfix">
-      <label class="ds-c-label" for="income">
-        Income
-      </label>
+    <div class="result" style="display: none;">
+      <h3 class="ds-h3">Calculated EFIN:</h3>
+      <code class="efin"></code>
 
-      <input name="income" class="ds-c-field block" />
-    </div>
+      <hr />
 
-    <hr />
-
-    <div class="ds-u-clearfix">
-      <button id="button" type="submit" class="ds-c-button block">Submit</button>
+      <div class="ds-u-clearfix">
+        <button id="resetBtn" class="ds-c-button block">Recalculate</button>
+      </div>
     </div>
   </form>
 </div>

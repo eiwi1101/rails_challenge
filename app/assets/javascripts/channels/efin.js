@@ -14,8 +14,33 @@ $(function () {
         },
 
         received: function (data) {
-            console.log(data);
-            $('#efin').text(data.body);
+            var $form   = $('form');
+            var $button = $form.find('button[type=submit]');
+
+            switch(data.status) {
+                case 'error':
+                    FormUtils.alert($form, 'error', data.error);
+                    FormUtils.addErrors($form, data.errors);
+                    FormUtils.enableButton($button);
+                    break;
+
+                case 'processing':
+                    break;
+
+                case 'processed':
+                    FormUtils.clearAlerts($form);
+
+                    FormUtils.alert($form, 'info', "EFIN Calculated", "Your EFIN has been calculated " +
+                        "successfully. Please keep this number for your records.");
+
+                    FormUtils.showResult($form, data.efin);
+                    break;
+
+                default:
+                    FormUtils.alert($form, 'Invalid response from server');
+                    FormUtils.enableButton($button);
+                    console.error("Invalid response:", data);
+            }
         }
     });
 
@@ -25,6 +50,8 @@ $(function () {
         var data = {};
         var $button = $(this).find('button[type=submit]');
 
+        FormUtils.clearAlerts($(this));
+        FormUtils.clearErrors($(this));
         FormUtils.disableButton($button);
 
         $(this).serializeArray().map(function (x) {
@@ -32,5 +59,18 @@ $(function () {
         });
 
         App.efin.send(data);
+    });
+
+    $("form").find("#resetBtn").on("click", function(e) {
+        e.preventDefault();
+        var $form = $(this).parents("form");
+
+        console.log($form);
+
+        $form[0].reset();
+
+        FormUtils.hideResult($form, function() {
+            $form.find('[autofocus]').focus();
+        });
     });
 });

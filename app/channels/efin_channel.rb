@@ -6,8 +6,11 @@ class EfinChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    EfinJob.perform_later params[:userToken], data
-    broadcast status: 'processing'
+    client = params[:userToken]
+    return unless validate client, data
+
+    EfinJob.perform_later client, data
+    broadcast client, status: 'processing'
   end
 
   def unsubscribed
@@ -20,7 +23,26 @@ class EfinChannel < ApplicationCable::Channel
 
   private
 
-  def broadcast(data)
-    EfinChannel.broadcast params[:usertoken], data
+  def broadcast(client, data)
+    EfinChannel.broadcast client, data
+  end
+
+  def validate(client, data)
+    errors = {}
+    valid = true
+
+    %w(household income).each do |k|
+      if data[k].nil? or data[k] !~ /\A\d+\z/
+        errors[k] = "must be a valid number"
+        valid = false
+      end
+    end
+
+    if not valid
+      broadcast client, status: 'error', error: 'Please correct your entries.', errors: errors
+      false
+    else
+      true
+    end
   end
 end
