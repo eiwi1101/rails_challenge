@@ -14,6 +14,12 @@ gem 'sidekiq'
 gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
 
+# Use Redis for pub/sub, version locked at 3.0-ish to support ActionCable
+# (See: https://github.com/rails/rails/issues/30527)
+gem 'redis', '~> 3.0'
+
+gem 'resque'
+
 
 # == Frontend (Coffee / SASS / Materialize)
 

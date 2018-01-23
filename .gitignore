@@ -24,3 +24,6 @@
 
 # Ignore things from RubyMine IDE
 /.idea
+
+# Ignore Redis.
+dump.rdb
