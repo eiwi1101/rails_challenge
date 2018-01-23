@@ -2,4 +2,6 @@
 // Sass variables, mixins, and functions
 $font-path:  "/assets";
 $image-path: "/assets";
+
+@import '@cmsgov/design-system-layout/src/index';
 @import '@cmsgov/design-system-core/src/index';

@@ -1,0 +1,13 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * This file supports SCSS syntax to ensure all included styles and mixins are available to other SCSS
+ * files during compilation. This allows extension of the CMS.gov framework used.
+ *
+ * For more information about the design framework, visit:
+ *   https://design.cms.gov/
+ */
+
+@import 'index';
+@import '**/*';

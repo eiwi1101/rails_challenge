@@ -1,12 +1,29 @@
-<form>
-<label class="ds-c-label" for="household">
-    Household size
-    <input name="household">
-  </label>
-<label class="ds-c-label" for="income">
-    Income
-    <input name="income">
-  </label>
-  <button id="button" type="submit">Submit</button>
-</form>
-<h1>EFIN: <span id="efin"></span></h1>
+<div class="narrow-container panel">
+  <h1 class="ds-h1">Calculate EFIN</h1>
+
+  <form>
+    <div class="alerts"></div>
+
+    <div class="ds-u-clearfix">
+      <label class="ds-c-label" for="household">
+        Household size
+      </label>
+
+      <input name="household" class="ds-c-field block" />
+    </div>
+
+    <div class="ds-u-clearfix">
+      <label class="ds-c-label" for="income">
+        Income
+      </label>
+
+      <input name="income" class="ds-c-field block" />
+    </div>
+
+    <hr />
+
+    <div class="ds-u-clearfix">
+      <button id="button" type="submit" class="ds-c-button block">Submit</button>
+    </div>
+  </form>
+</div>

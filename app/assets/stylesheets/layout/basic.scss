@@ -1,0 +1,13 @@
+.block {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+hr {
+  @extend .ds-u-margin-y--3;
+  @extend .ds-u-fill--gray-lighter;
+
+  height: 1px;
+  border: none;
+}
